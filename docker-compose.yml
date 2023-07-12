@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  php:
+    container_name: slim_swoole
+    command: bash -c "composer install && echo '----------STARTING----------' && php index.php"
+    build:
+      context: ./docker/php
+    ports:
+      - '${HTTP_PORT}:${HTTP_PORT}' # http port
+      - '${WEBSOCKET_PORT}:${WEBSOCKET_PORT}' # websocket/http port
+    volumes:
+      - .:/var/www/slim_app
