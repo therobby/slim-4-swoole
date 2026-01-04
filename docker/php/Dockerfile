@@ -1,4 +1,4 @@
-FROM openswoole/swoole:php8.1
+FROM phpswoole/swoole:6.1-php8.4
 
 RUN apt update \
     && apt install -y zlib1g-dev g++ libicu-dev zip libzip-dev zip libpq-dev libssl-dev openssl wget git procps htop libcurl4-openssl-dev \

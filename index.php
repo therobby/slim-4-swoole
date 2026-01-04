@@ -17,17 +17,16 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Slim\Factory\AppFactory;
 
-// https://openswoole.com/article/swoole-and-psr
-
 $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
 $app = AppFactory::create();
 
+
 $server = new Swoole\WebSocket\Server(
     $_ENV['WEBSOCKET_HOST'],
-    $_ENV['WEBSOCKET_PORT'],
-    SWOOLE_BASE
+    intval($_ENV['WEBSOCKET_PORT']),
+    intval(SWOOLE_BASE)
 );
 $server->set(
     [
@@ -35,16 +34,24 @@ $server->set(
     ]
 );
 
+
+
 $routes = include_once __DIR__ . '/app/http/routes/routes.php';
 $routes($app);
+
 
 $websocket = include_once __DIR__ . '/app/websocket/websocket.php';
 $websocket($server);
 
-// http on the same port as websocket
+
+/**
+ * http on the same port as websocket
+ */
 $handleSamePort = include_once __DIR__ . '/app/http/handle/same_port/handle.php';
 $handleSamePort($server, $app);
-// http on different port as websocket
+/**
+ * http on different port as websocket
+ */
 // $handleDifferentPort = include_once __DIR__
 //     . '/app/http/handle/different_port/handle.php';
 // $handleDifferentPort($server, $app);
