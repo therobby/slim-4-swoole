@@ -13,7 +13,7 @@ use Swoole\WebSocket\Server;
 use Slim\App;
 
 return function (Server $server, App $app): void {
-    $http = $server->listen($_ENV['HTTP_HOST'], $_ENV['HTTP_PORT'], SWOOLE_BASE);
+    $http = $server->listen($_ENV['HTTP_HOST'], intval($_ENV['HTTP_PORT']), intval(SWOOLE_BASE));
 
     $uriFactory = new Psr17Factory();
     $streamFactory = new Psr17Factory();
