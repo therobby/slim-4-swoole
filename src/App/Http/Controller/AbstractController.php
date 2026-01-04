@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\http\controler;
+namespace Application\App\Http\Controller;
 
-use Psr\Http\Message\ResponseInterface;
 use Imefisto\PsrSwoole\ServerRequest as Request;
+use Psr\Http\Message\ResponseInterface;
 
-abstract class AbstractControler
+abstract class AbstractController
 {
     /**
      * Abstract controler
-     * 
+     *
      * @param Request           $request
      * @param ResponseInterface $response
      * @param array<string>     $args
-     * 
+     *
      * @return ResponseInterface
      */
     abstract public function __invoke(
