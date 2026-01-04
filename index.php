@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Template for Slim 4 microframework with swoole
- * 
- * PHP version 8.1
- * 
+ *
+ * PHP version 8.4
+ *
  * @category Microframework
  * @package  Slim4Swoole-Template
  * @author   therobby <therobby@github.com>

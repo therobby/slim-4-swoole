@@ -15,10 +15,10 @@ use Slim\App;
 return function (Server $server, App $app): void {
     $http = $server->listen($_ENV['HTTP_HOST'], $_ENV['HTTP_PORT'], SWOOLE_BASE);
 
-    $uriFactory = new Psr17Factory;
-    $streamFactory = new Psr17Factory;
-    $uploadedFileFactory = new Psr17Factory;
-    $responseMerger = new ResponseMerger;
+    $uriFactory = new Psr17Factory();
+    $streamFactory = new Psr17Factory();
+    $uploadedFileFactory = new Psr17Factory();
+    $responseMerger = new ResponseMerger();
 
     $http->on(
         'request',
@@ -41,12 +41,12 @@ return function (Server $server, App $app): void {
                 $streamFactory,
                 $uploadedFileFactory
             );
-        
+
             /**
              * Process request (here is where slim handles the request)
              */
             $psrResponse = $app->handle($psrRequest);
-        
+
             /**
              * Merge your psr response with swoole response
              */
